@@ -4,6 +4,13 @@ import logo from "../assets/img/logo-header.png";
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  const itemsMenu = [
+    { name: "Home", link: "#" },
+    { name: "About", link: "#" },
+    { name: "Contact Us", link: "#" },
+    { name: "Blog", link: "#" },
+  ];
+
   return (
     <>
       <header className="w-full bg-white h-[8dvh] px-4 gap-8 flex justify-between sm:justify-center items-center border-b-2 border-gray-300 sm:shadow-lg">
@@ -25,7 +32,16 @@ const Navbar = () => {
 
         {/*  menu  */}
         <nav className="gap-6 text-sm font-medium hidden sm:flex">
-          <a href="#" className="text-zinc-400 hover:text-zinc-900">
+          {itemsMenu.map((item, index) => (
+            <a
+              key={index}
+              href={item.link}
+              className="text-zinc-400 hover:text-zinc-900 font-bold"
+            >
+              {item.name}
+            </a>
+          ))}
+          {/* <a href="#" className="text-zinc-400 hover:text-zinc-900">
             Home
           </a>
           <a href="#" className="text-zinc-400 hover:text-zinc-900">
@@ -36,7 +52,7 @@ const Navbar = () => {
           </a>
           <a href="#" className="text-zinc-400 hover:text-zinc-900">
             Blog
-          </a>
+          </a> */}
         </nav>
 
         {/* icons */}
@@ -130,21 +146,16 @@ const Navbar = () => {
           </button>
 
           {isMenuOpen && (
-            <nav className="flex flex-col justify-center items-center position absolute top-20 left-0 w-full bg-white py-4 gap-4 shadow-md z-10 transition-all duration-300 ease-in ">
-             
-                <a href="#" className="text-zinc-400 hover:text-zinc-900">
-                  Home
+            <nav className="flex flex-col justify-center items-center position absolute top-18 left-0 w-full bg-white py-4 gap-4 shadow-md z-10 transition-all duration-300 ease-in ">
+              {itemsMenu.map((item, index) => (
+                <a
+                  key={index}
+                  href={item.link}
+                  className="text-zinc-400 hover:text-zinc-900 font-bold"
+                >
+                  {item.name}
                 </a>
-                <a href="#" className="text-zinc-400 hover:text-zinc-900">
-                  About
-                </a>
-                <a href="#" className="text-zinc-400 hover:text-zinc-900">
-                  Contact Us
-                </a>
-                <a href="#" className="text-zinc-400 hover:text-zinc-900">
-                  Blog
-                </a>
-             
+              ))}
             </nav>
           )}
         </div>
